@@ -1,0 +1,5 @@
+力扣416：
+背包问题/DP:
+for num in nums:
+    for i in range(target, num-1, -1):
+        dp[i] = dp[i] or dp[i-num]
