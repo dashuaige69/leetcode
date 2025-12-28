@@ -3,3 +3,50 @@
 for num in nums:
     for i in range(target, num-1, -1):
         dp[i] = dp[i] or dp[i-num]
+
+力扣48：
+先转置再reverse函数交换列位置
+
+Kadane算法
+
+力扣2054：
+二分法：
+for i, e in enumerate(events, 1): ##从1开始编号
+            values[i] = max(values[i-1], e[2])
+
+        ans = 0
+for start, end, val in events:
+            idx = bisect.bisect_left(ends, start)  
+            ans = max(ans, val + values[idx])
+
+706 Design Hashmap:
+通用做法：链表数组实现哈希表
+每个哈希桶是一个链表
+class MyHashMap:
+
+    def __init__(self):
+        self.size = 1000
+        self.buckets =[[] for _ in range(self.size)]
+
+    def put(self, key: int, value: int) -> None:
+        idx = key % self.size
+        for i,(k,v) in enumerate(self.buckets[idx]):
+            if k == key:
+                self.buckets[idx][i] =(key,value)
+                return
+        self.buckets[idx].append((key,value))
+
+    def get(self, key: int) -> int:
+        idx = key % self.size
+        for k,v in self.buckets[idx]:
+            if k == key:
+                return v
+        return -1
+
+    def remove(self, key: int) -> None:
+        idx = key % self.size 
+        for i, (k, v) in enumerate(self.buckets[idx]): 
+            if k == key: 
+                
+                self.buckets[idx].pop(i) 
+                return
